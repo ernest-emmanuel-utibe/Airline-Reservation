@@ -1,4 +1,4 @@
-package fly.flight.morseAir.data.model;
+package fly.flight.morseAir.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

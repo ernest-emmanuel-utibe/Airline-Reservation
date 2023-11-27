@@ -1,9 +1,10 @@
-package fly.flight.morseAir.data.model;
+package fly.flight.morseAir.model;
 
 import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Agent {
+
 }
