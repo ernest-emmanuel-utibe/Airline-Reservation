@@ -21,6 +21,7 @@ public class TicketBookingServiceImpl implements TicketBookingService {
 
     @Override
     public TicketBooking editTicket(Long ticketId, TicketBooking updatedTicket) {
+
         TicketBooking existingTicket = ticketBookingRepository.findById(ticketId)
                 .orElseThrow();
 
