@@ -25,7 +25,7 @@ public class TicketBookingServiceImpl implements TicketBookingService {
         TicketBooking existingTicket = ticketBookingRepository.findById(ticketId)
                 .orElseThrow();
 
-        // Update the existing ticket with the new values
+        // Update the existing ticket with the new values.
         existingTicket.setTicket_booking_id(updatedTicket.getTicket_booking_id());
         existingTicket.setTicket_type(updatedTicket.getTicket_type());
         existingTicket.setTicket_description(updatedTicket.getTicket_description());
