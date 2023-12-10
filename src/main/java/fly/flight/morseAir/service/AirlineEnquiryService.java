@@ -10,5 +10,5 @@ public interface AirlineEnquiryService {
     AirlineEnquiry updateAirlineEnquiry(AirlineEnquiry airlineEnquiry);
     void deleteAirlineEnquiry(long airlineEnquiryId);
     List<AirlineEnquiry> saveAirlineEnquiry(List<AirlineEnquiry> airlineEnquiries);
-    List<AirlineEnquiry> searchAirlineEnquiry(String searchTerm);
+    List<AirlineEnquiry> searchAirlineEnquiry(String airline_enquiry_title, String airline_enquiry_description);
 }

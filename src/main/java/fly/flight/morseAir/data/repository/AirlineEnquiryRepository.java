@@ -8,5 +8,8 @@ import java.util.List;
 
 @Repository
 public interface AirlineEnquiryRepository extends JpaRepository<AirlineEnquiry, Long> {
-    List<AirlineEnquiry> findByEnquiryTitleContainingOrDescriptionContaining(String enquiryTitle, String description);
+    List<AirlineEnquiry> findByAirline_enquiry_titleOrAirline_Enquiry_DescriptionContaining(String airline_enquiry_title
+            , String airline_enquiry_description);
+
+    List<AirlineEnquiry> findByAirline(Airline airline);
 }

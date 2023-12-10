@@ -58,8 +58,10 @@ public class AirlineEnquiryController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<AirlineEnquiry>> searchAirlineEnquiry(@RequestParam("searchTerm") String searchTerm) {
-        List<AirlineEnquiry> foundAirlineEnquiries = airlineEnquiryService.searchAirlineEnquiry(searchTerm);
+    public ResponseEntity<List<AirlineEnquiry>> searchAirlineEnquiry(@RequestParam("searchTerm")
+                                                                     String airline_enquiry_title, String airline_enquiry_description) {
+
+        List<AirlineEnquiry> foundAirlineEnquiries = airlineEnquiryService.searchAirlineEnquiry(airline_enquiry_title, airline_enquiry_description);
         return new ResponseEntity<>(foundAirlineEnquiries, HttpStatus.OK);
     }
 }

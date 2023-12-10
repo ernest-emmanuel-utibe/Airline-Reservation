@@ -2,6 +2,7 @@ package fly.flight.morseAir.service.impl;
 
 import fly.flight.morseAir.data.model.AirlineEnquiry;
 import fly.flight.morseAir.data.repository.AirlineEnquiryRepository;
+import fly.flight.morseAir.exceptions.AirlineEnquiryNotFoundException;
 import fly.flight.morseAir.service.AirlineEnquiryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,20 +22,23 @@ public class AirlineEnquiryServiceImpl implements AirlineEnquiryService {
 
     @Override
     public AirlineEnquiry editAirlineEnquiry(AirlineEnquiry airlineEnquiry) {
+        Long enquiryId = airlineEnquiry.getAirline_enquiry_id();
+
         if (airlineEnquiry.getAirline_enquiry_id() == null ||
                 !airlineEnquiryRepository.existsById(airlineEnquiry.getAirline_enquiry_id())) {
             // Handle invalid airline enquiry or ID not found
-            return null;
+            throw new AirlineEnquiryNotFoundException("Airline Enquiry with ID " + enquiryId + " not found");
         }
         return airlineEnquiryRepository.save(airlineEnquiry);
     }
 
     @Override
     public AirlineEnquiry updateAirlineEnquiry(AirlineEnquiry airlineEnquiry) {
+        Long enquiryId = airlineEnquiry.getAirline_enquiry_id();
         if (airlineEnquiry.getAirline_enquiry_id() == null ||
                 !airlineEnquiryRepository.existsById(airlineEnquiry.getAirline_enquiry_id())) {
             // Handle invalid airline enquiry or ID not found
-            return null;
+            throw new AirlineEnquiryNotFoundException("Airline Enquiry with ID " + enquiryId + " not found");
         }
         return airlineEnquiryRepository.save(airlineEnquiry);
     }
@@ -50,8 +54,9 @@ public class AirlineEnquiryServiceImpl implements AirlineEnquiryService {
     }
 
     @Override
-    public List<AirlineEnquiry> searchAirlineEnquiry(String searchTerm) {
+    public List<AirlineEnquiry> searchAirlineEnquiry(String airline_enquiry_title, String airline_enquiry_description) {
         // Implement search logic using repository methods or custom query
-        return airlineEnquiryRepository.findByEnquiryTitleContainingOrDescriptionContaining(searchTerm, searchTerm);
+        return airlineEnquiryRepository.findByAirline_enquiry_titleOrAirline_Enquiry_DescriptionContaining(
+                airline_enquiry_title,  airline_enquiry_description);
     }
 }
