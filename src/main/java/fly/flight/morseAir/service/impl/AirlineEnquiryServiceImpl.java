@@ -1,5 +1,6 @@
 package fly.flight.morseAir.service.impl;
 
+import fly.flight.morseAir.data.model.Airline;
 import fly.flight.morseAir.data.model.AirlineEnquiry;
 import fly.flight.morseAir.data.repository.AirlineEnquiryRepository;
 import fly.flight.morseAir.exceptions.AirlineEnquiryNotFoundException;
@@ -29,6 +30,22 @@ public class AirlineEnquiryServiceImpl implements AirlineEnquiryService {
             // Handle invalid airline enquiry or ID not found
             throw new AirlineEnquiryNotFoundException("Airline Enquiry with ID " + enquiryId + " not found");
         }
+        return airlineEnquiryRepository.save(airlineEnquiry);
+    }
+
+    @Override
+    public AirlineEnquiry updateAirlineEnquiryWithAirline(Long airlineEnquiryId, Long airlineId) {
+        // Retrieve the AirlineEnquiry and Airline entities from their respective repositories
+        AirlineEnquiry airlineEnquiry = airlineEnquiryRepository.findById(airlineEnquiryId)
+                .orElseThrow(() -> new AirlineEnquiryNotFoundException("Airline Enquiry not found"));
+
+        Airline airline = airlineEnquiryRepository.findById(airlineId)
+                .orElseThrow(() -> new AirlineEnquiryNotFoundException("Airline not found")).getAirline();
+
+        // Set the Airline for the AirlineEnquiry
+        airlineEnquiry.setAirline(airline);
+
+        // Save the updated AirlineEnquiry entity with the associated Airline
         return airlineEnquiryRepository.save(airlineEnquiry);
     }
 

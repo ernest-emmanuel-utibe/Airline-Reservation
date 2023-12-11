@@ -45,6 +45,20 @@ public class AirlineEnquiryController {
         }
     }
 
+    @PostMapping("/{airlineEnquiryId}/assign-airline/{airlineId}")
+    public ResponseEntity<AirlineEnquiry> assignAirlineToEnquiry(@PathVariable Long airlineEnquiryId,
+            @PathVariable Long airlineId) {
+
+        AirlineEnquiry updatedEnquiry = airlineEnquiryService.updateAirlineEnquiryWithAirline(airlineEnquiryId, airlineId);
+
+        if (updatedEnquiry != null) {
+            return ResponseEntity.ok(updatedEnquiry);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
     @DeleteMapping("/delete/{airlineEnquiryId}")
     public ResponseEntity<Void> deleteAirlineEnquiry(@PathVariable long airlineEnquiryId) {
         airlineEnquiryService.deleteAirlineEnquiry(airlineEnquiryId);

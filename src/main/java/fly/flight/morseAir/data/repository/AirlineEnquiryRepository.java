@@ -1,5 +1,6 @@
 package fly.flight.morseAir.data.repository;
 
+import fly.flight.morseAir.data.model.Airline;
 import fly.flight.morseAir.data.model.AirlineEnquiry;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
