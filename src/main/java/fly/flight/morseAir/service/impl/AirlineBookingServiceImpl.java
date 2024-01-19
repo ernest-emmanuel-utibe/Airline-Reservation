@@ -5,7 +5,6 @@ import fly.flight.morseAir.data.repository.AirlinesBookingRepository;
 import fly.flight.morseAir.service.AirlineBookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -49,6 +48,7 @@ public class AirlineBookingServiceImpl implements AirlineBookingService {
 
     @Override
     public List<AirlinesBooking> searchAirlines(String searchTerm) {
+        
         // Implement search logic using repository methods or custom query
         return airlinesBookingRepository.findByNameContaining(searchTerm);
     }
